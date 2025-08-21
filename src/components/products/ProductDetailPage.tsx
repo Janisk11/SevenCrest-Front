@@ -74,7 +74,7 @@ const ProductDetailPage: React.FC<Props> = ({ productId, category }) => {
             Category: {product.category}
           </Typography>
           <Typography variant="subtitle2">
-            Rating: {product.rating.rate} ({product.rating.count} reviews)
+            Rating: {product.rating} 
           </Typography>
         </CardContent>
         <Box sx={{ p: 2 }}>
