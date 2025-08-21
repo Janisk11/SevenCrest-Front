@@ -3,7 +3,7 @@ import React from 'react'
 import EnhancedCategoryPage from '../../components/categories/EnhancedCategoryPage'
 
 const Gents: React.FC = () => {
-  return <EnhancedCategoryPage category="mens-shirts" title="Gents" />
+  return <EnhancedCategoryPage category="mens-shirts" title="gents" />
 }
 
 export default Gents

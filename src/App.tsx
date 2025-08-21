@@ -21,19 +21,18 @@ const App: React.FC = () => {
         <Route
           path="/gents"
           element={
-            // <EnhancedCategoryPage category="men's clothing" title="Gents" />
-            <EnhancedCategoryPage category="mens-shirts" title="Gents" />
+            <EnhancedCategoryPage category="mens-shirts" title="gents" />
           }
         />
         <Route
           path="/ladies"
           element={
-            <EnhancedCategoryPage category="womens-dresses" title="Ladies" />
+            <EnhancedCategoryPage category="womens-dresses" title="ladies" />
           }
         />
         <Route
           path="/kids"
-          element={<EnhancedCategoryPage category="tops" title="Kids" />}
+          element={<EnhancedCategoryPage category="tops" title="kids" />}
         />
         <Route path="/:category/:id" element={<ProductDetailPageWrapper />} />
       </Routes>

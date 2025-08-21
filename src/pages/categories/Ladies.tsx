@@ -6,7 +6,7 @@ const Ladies: React.FC = () => {
   return (
     <EnhancedCategoryPage
       category="womens-dresses" // actual Fake Store category
-      title="Ladies" // title shown on page
+      title="ladies" // title shown on page
     />
   )
 }
