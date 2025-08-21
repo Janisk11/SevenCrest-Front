@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes, useParams } from 'react-router-dom'
 
-function App() {
+import './App.css'
+import { ThemeProvider, CssBaseline } from '@mui/material'
+import theme from './theme'
+import ResponsiveAppBar from './components/layout/ResponsiveAppBar'
+import EnhancedCategoryPage from './components/categories/EnhancedCategoryPage'
+import ProductDetailPageWrapper from './pages/ProductDetailPageWrapper'
+
+import Footer from './components/layout/Footer'
+
+import Home from './pages/Home'
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <ResponsiveAppBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/gents"
+          element={
+            // <EnhancedCategoryPage category="men's clothing" title="Gents" />
+            <EnhancedCategoryPage category="mens-shirts" title="Gents" />
+          }
+        />
+        <Route
+          path="/ladies"
+          element={
+            <EnhancedCategoryPage category="womens-dresses" title="Ladies" />
+          }
+        />
+        <Route
+          path="/kids"
+          element={<EnhancedCategoryPage category="tops" title="Kids" />}
+        />
+        <Route path="/:category/:id" element={<ProductDetailPageWrapper />} />
+      </Routes>
+
+      <Footer />
+    </ThemeProvider>
+  )
 }
 
-export default App;
+// Wrapper to extract productId from route params
+// const ProductDetailPageWrapper = () => {
+//   const { category, id } = useParams<{ category: string; id: string }>()
+//   if (!id) return <div>Invalid Product</div>
+//   return <ProductDetailPage productId={parseInt(id, 10)} category={category} />
+// }
+
+export default App
