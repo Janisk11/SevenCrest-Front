@@ -8,7 +8,7 @@ import {
   CardContent,
   Button,
 } from '@mui/material'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Product } from '../../hooks/useProducts'
 
 interface Props {
