@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 export interface Product {
   id: number
@@ -19,24 +20,27 @@ export function useProducts(category?: string) {
 
   useEffect(() => {
     setLoading(true)
-    let url = API_URL
-    if (category) {
-      url = `${API_URL}/category/${category}`
+    setError(null)
+
+    const fetchData = async () => {
+      try {
+        let url = API_URL
+        if (category) {
+          url = `${API_URL}/category/${category}`
+        }
+
+        const res = await axios.get(url)
+        const data = res.data
+
+        setProducts(data.products)
+      } catch (err: any) {
+        setError(err.message || 'Unknown error')
+      } finally {
+        setLoading(false)
+      }
     }
 
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch products')
-        return res.json()
-      })
-      .then((data) => {
-        setProducts(data.products)
-        setLoading(false)
-      })
-      .catch((err) => {
-        setError(err.message)
-        setLoading(false)
-      })
+    fetchData()
   }, [category])
 
   return { products, loading, error }

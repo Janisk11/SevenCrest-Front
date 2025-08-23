@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import {
   Box,
   Typography,
@@ -23,20 +24,22 @@ const ProductDetailPage: React.FC<Props> = ({ productId, category }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    setLoading(true)
-    fetch(`https://dummyjson.com/products/${productId}`)
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch product')
-        return res.json()
-      })
-      .then((data: Product) => {
-        setProduct(data)
+    const fetchProduct = async () => {
+      try {
+        setLoading(true)
+        setError(null)
+        const res = await axios.get(
+          `https://dummyjson.com/products/${productId}`
+        )
+        setProduct(res.data)
+      } catch (err: any) {
+        setError(err.message || 'Something went wrong')
+      } finally {
         setLoading(false)
-      })
-      .catch((err) => {
-        setError(err.message)
-        setLoading(false)
-      })
+      }
+    }
+
+    fetchProduct()
   }, [productId])
 
   if (loading) return <CircularProgress />
@@ -48,7 +51,7 @@ const ProductDetailPage: React.FC<Props> = ({ productId, category }) => {
       <Button
         variant="outlined"
         sx={{ mb: 2 }}
-        onClick={() => category && navigate(`/${category}`)}
+        onClick={() => navigate(category ? `/${category}` : '/products')}
       >
         Back to {category}
       </Button>
@@ -73,9 +76,7 @@ const ProductDetailPage: React.FC<Props> = ({ productId, category }) => {
           <Typography variant="subtitle2">
             Category: {product.category}
           </Typography>
-          <Typography variant="subtitle2">
-            Rating: {product.rating} 
-          </Typography>
+          <Typography variant="subtitle2">Rating: {product.rating}</Typography>
         </CardContent>
         <Box sx={{ p: 2 }}>
           <Button variant="contained" color="primary">
