@@ -9,6 +9,7 @@ import {
   CardContent,
   Button,
 } from '@mui/material'
+import WhatsAppIcon from '@mui/icons-material/WhatsApp'
 import { useNavigate } from 'react-router-dom'
 import { Product } from '../../hooks/useProducts'
 
@@ -22,7 +23,8 @@ const ProductDetailPage: React.FC<Props> = ({ productId, category }) => {
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
-
+  const siteUrl = window.location.origin // gets your deployed site domain dynamically
+  const productUrl = `${siteUrl}/${category}/${productId}`
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -73,9 +75,9 @@ const ProductDetailPage: React.FC<Props> = ({ productId, category }) => {
           <Typography variant="body1" paragraph>
             {product.description}
           </Typography>
-          <Typography variant="subtitle2">
+          {/* <Typography variant="subtitle2">
             Category: {product.category}
-          </Typography>
+          </Typography> */}
           <Typography variant="subtitle2">Rating: {product.rating}</Typography>
         </CardContent>
         {/* <Box sx={{ p: 2 }}>
@@ -83,6 +85,18 @@ const ProductDetailPage: React.FC<Props> = ({ productId, category }) => {
             Add to Cart
           </Button>
         </Box> */}
+        <Button
+          variant="outlined"
+          color="success"
+          href={`https://wa.me/918301076389?text=${encodeURIComponent(
+            `Hi! I'm interested in this product: ${productUrl}`
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          startIcon={<WhatsAppIcon />}
+        >
+          WhatsApp
+        </Button>
       </Card>
     </Box>
   )
