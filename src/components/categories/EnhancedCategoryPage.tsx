@@ -52,7 +52,6 @@ const EnhancedCategoryPage: React.FC<Props> = ({ category, title }) => {
                   size="small"
                   component={Link}
                   to={`/${title}/${product.id}`}
-                  target="_blank"
                 >
                   Details
                 </Button>

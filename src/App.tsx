@@ -4,7 +4,7 @@ import './App.css'
 import { ThemeProvider, CssBaseline } from '@mui/material'
 import theme from './theme'
 import ResponsiveAppBar from './components/layout/ResponsiveAppBar'
-import EnhancedCategoryPage from './components/categories/EnhancedCategoryPage'
+import EnhancedCategoryPageWrapper from './pages/EnhancedCategoryPageWrapper'
 import ProductDetailPageWrapper from './pages/ProductDetailPageWrapper'
 
 import Footer from './components/layout/Footer'
@@ -18,7 +18,7 @@ const App: React.FC = () => {
       <ResponsiveAppBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
+        {/* <Route
           path="/gents"
           element={
             <EnhancedCategoryPage category="mens-shirts" title="gents" />
@@ -34,6 +34,8 @@ const App: React.FC = () => {
           path="/kids"
           element={<EnhancedCategoryPage category="tops" title="kids" />}
         />
+        <Route path="/:category/:id" element={<ProductDetailPageWrapper />} /> */}
+        <Route path="/:category" element={<EnhancedCategoryPageWrapper />} />
         <Route path="/:category/:id" element={<ProductDetailPageWrapper />} />
       </Routes>
 
