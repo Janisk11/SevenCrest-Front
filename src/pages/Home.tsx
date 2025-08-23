@@ -26,6 +26,29 @@ const categories = [
   { name: 'Ladies', Img: ladiesImg,  whereto:'/ladies', clr: 'secondary' as const },
   { name: 'Kids', Img: kidsImg,  whereto:'/kids', clr: 'success' as const },
 ]
+const featureProducts = [
+  {
+    productId: 86,
+    category: 'mens-shirts',
+    productImgUrl:
+      'https://cdn.dummyjson.com/product-images/mens-shirts/man-short-sleeve-shirt/thumbnail.webp',
+    price: 19.99,
+  },
+  {
+    productId: 84,
+    category: 'mens-shirts',
+    productImgUrl:
+      '	https://cdn.dummyjson.com/product-images/mens-shirts/gigabyte-aorus-men-tshirt/thumbnail.webp',
+    price: 24.99,
+  },
+  {
+    productId: 85,
+    category: 'mens-shirts',
+    productImgUrl:
+      '	https://cdn.dummyjson.com/product-images/mens-shirts/man-plaid-shirt/thumbnail.webp',
+    price: 34.99,
+  },
+]
 
 const Home: React.FC = () => {
   return (
@@ -108,20 +131,21 @@ const Home: React.FC = () => {
           Featured Products
         </Typography>
         <Grid container spacing={4} justifyContent="center">
-          {[1, 2, 3].map((productId) => (
-            <Grid key={productId} size={{ xs: 12, sm: 6, md: 4 }}>
+          {featureProducts.map((product, idx) => (
+            <Grid key={idx} size={{ xs: 12, sm: 6, md: 4 }}>
               <Card>
                 <CardMedia
                   component="img"
-                  height="140"
-                  image={`/images/jersey${productId}.jpg`}
-                  alt={`Jersey ${productId}`}
+                  height="200"
+                  image={product.productImgUrl}
+                  alt={`Jersey ${product.productId}`}
+                  sx={{objectFit:'contain'}}
                 />
                 <CardContent>
-                  <Typography variant="subtitle1">
-                    Team Jersey {productId}
-                  </Typography>
-                  <Typography variant="body2">€{30 + productId * 5}</Typography>
+                  {/* <Typography variant="subtitle1">
+                    Team Jersey {product.productId}
+                  </Typography> */}
+                  <Typography variant="body2">€{product.price}</Typography>
                 </CardContent>
               </Card>
             </Grid>
