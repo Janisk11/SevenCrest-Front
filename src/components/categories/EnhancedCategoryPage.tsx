@@ -26,7 +26,7 @@ const EnhancedCategoryPage: React.FC<Props> = ({ category, title }) => {
 
   return (
     <Box maxWidth="xl" sx={{ mx: 'auto', px: { xs: 2, sm: 8 } }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom sx={{ textTransform: 'uppercase' }}>
         {title}
       </Typography>
       <Grid container spacing={3}>
