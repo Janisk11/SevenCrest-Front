@@ -78,11 +78,11 @@ const ProductDetailPage: React.FC<Props> = ({ productId, category }) => {
           </Typography>
           <Typography variant="subtitle2">Rating: {product.rating}</Typography>
         </CardContent>
-        <Box sx={{ p: 2 }}>
+        {/* <Box sx={{ p: 2 }}>
           <Button variant="contained" color="primary">
             Add to Cart
           </Button>
-        </Box>
+        </Box> */}
       </Card>
     </Box>
   )
